@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "strawberry",
     # Local apps
     "blog",
+    "users",
 ]
 
 MIDDLEWARE = [
