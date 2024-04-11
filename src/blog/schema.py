@@ -13,7 +13,12 @@ class Query:
             post = BlogPost.objects.filter(title=title)
             return post
         return BlogPost.objects.all()
-
+    
+    @strawberry.field
+    def get_blogposts_by_limit(self, limit:int=None) -> List[BlogPostType]:
+        """ Return all posts up to limit provided """
+        blogs = BlogPost.objects.all()[0:limit]
+        return blogs
     
 # Mutation
 # equivalent to `Create, Update, Delete` operations
