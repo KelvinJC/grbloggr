@@ -4,7 +4,7 @@ import strawberry.django
 from . import models
 
 
-@strawberry.django.type(models.Post)
+@strawberry.django.type(models.BlogPost)
 class PostType:
     id: int
     title: str
