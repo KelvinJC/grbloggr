@@ -1,4 +1,4 @@
-"# grbloggr" 
+# grbloggr
 
 ![](v_images/django_graphQL.png)
 
