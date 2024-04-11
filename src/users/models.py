@@ -7,7 +7,11 @@ class User(AbstractUser):
     email = models.EmailField(_('email_address'), unique=True, db_index=True)
     phone_number = models.CharField(max_length=15)
 
-    REQUIRED_FIELDS = ['first_name', 'last_name', 'phone_number']
+    REQUIRED_FIELDS = ['password', 'phone_number']
 
-    def __str__(self) -> str:
+    USERNAME_FIELD = "username"
+    EMAIL_FIELD = "email"
+
+    def __repr__(self) -> str:
         return self.username
+    
