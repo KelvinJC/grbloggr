@@ -142,3 +142,6 @@ GQL_AUTH = GqlAuthSettings(
     LOGIN_REQUIRE_CAPTCHA=False,
     REGISTER_REQUIRE_CAPTCHA=False
 )
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+TIME_ZONE = 'Africa/Lagos'
