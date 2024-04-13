@@ -1,43 +1,25 @@
-# from typing import Union, Annotated
-# from django.contrib.auth import authenticate
-# import strawberry
-# from .types import LoginError, LoginSuccess
-# from .models import User
-
-# LoginResult = Annotated[
-#     Union[LoginSuccess, LoginError], strawberry.union("LoginResult")
-# ]
-
-# @strawberry.type
-# class Mutation:
-#     @strawberry.field
-#     def login(self, username: str, password: str) -> LoginResult:
-#         user = authenticate(username=username, password=password)
-#         if user is None:
-#             return LoginError(message="Something went wrong")
-#         return LoginSuccess(user=User(username=username))
-    
+  
+from typing import List
+from django.contrib.auth import get_user_model
 
 import strawberry
 from gqlauth.user.queries import UserQueries
 from gqlauth.user import arg_mutations as mutations
 from gqlauth.core.middlewares import JwtSchema
-from django.contrib.auth import get_user_model
-from users.types import UserType
 
-# blog
-from typing import List
+from .types import UserType1, BlogPostType
+from users.models import User
 from blog.models import BlogPost
-from blog.types import BlogPostType
 
 
 @strawberry.django.type(model=get_user_model())
 class Query:
-    me: UserType = UserQueries.me
-    public: UserType = UserQueries.public_user
+    me: UserType1 = UserQueries.me # With MeQuery you can retrieve data for the currently authenticated user
+    public: UserType1 = UserQueries.public_user
 
     @strawberry.field
-    def get_blogposts(self, title:str=None) -> List[BlogPostType]:
+    def get_blogposts(self, info: strawberry.Info, title:str=None) -> List[BlogPostType]:
+        print("INFO CONTEXT REQ", info.context.request.user)
         if title:
             post = BlogPost.objects.filter(title=title)
             return post
@@ -53,21 +35,22 @@ class Query:
 @strawberry.type
 class Mutation:
 
-    register = mutations.Register.field
-    verify_account = mutations.VerifyAccount.field # login
-    password_set = mutations.PasswordSet.field
+    register = mutations.Register.field              # --> user registration with username and pwd
+    verify_account = mutations.VerifyAccount.field   # --> email verification during user registration 
+    password_set = mutations.PasswordSet.field       # --> set password after passwordless registration
     password_change = mutations.PasswordChange.field
     update_account = mutations.UpdateAccount.field
     delete_account = mutations.DeleteAccount.field
-    token_auth = mutations.ObtainJSONWebToken.field
+    login = mutations.ObtainJSONWebToken.field       # --> login
     refresh_token = mutations.RefreshToken.field
     verify_token = mutations.VerifyToken.field
+
 
     @strawberry.field
     def create_blogpost(self, title:str, author:str, message:str) -> BlogPostType:
         blog = BlogPost(
             title = title,
-            author = author,
+            author = User.objects.filter(username=author).first(),
             message = message
         )
         blog.save()
@@ -89,6 +72,6 @@ class Mutation:
         return True
  
 
-# This is essentially the same as strawberries schema though it
-# injects the user to `info.context["request"].user
+# This is essentially the same as strawberries schema,
+# though it injects the user to `info.context["request"].user
 schema = JwtSchema(query=Query, mutation= Mutation)
