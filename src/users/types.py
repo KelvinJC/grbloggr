@@ -1,14 +1,8 @@
 from typing import List
 import strawberry
 from . import models
+from blog.types import BlogPostType
 
-
-@strawberry.type
-class BlogPostType:
-    id: int
-    title: str
-    author: "UserType1" 
-    message: str
 
 @strawberry.django.type(models.User)
 class UserType1:
