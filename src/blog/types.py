@@ -1,12 +1,26 @@
-from typing import List
 import strawberry
 import strawberry.django
-from . import models
+from users import models 
 
 
-@strawberry.django.type(models.BlogPost)
+@strawberry.type
 class BlogPostType:
     id: int
     title: str
-    author: str
+    author: "LimitedUserType1" 
     message: str
+
+@strawberry.django.type(models.User)
+class LimitedUserType1:
+    username: str
+    email: str
+
+
+@strawberry.type
+class UpdateBlogPostSuccess:
+    blog: BlogPostType
+
+@strawberry.type
+class UpdateNotPermittedError:
+    error: bool = True
+    message: str    
