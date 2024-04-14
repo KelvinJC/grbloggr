@@ -1,3 +1,5 @@
+from typing import Union, Annotated
+
 import strawberry
 import strawberry.django
 from users import models 
@@ -22,5 +24,24 @@ class UpdateBlogPostSuccess:
 
 @strawberry.type
 class UpdateNotPermittedError:
-    error: bool = True
     message: str    
+
+
+@strawberry.type
+class DeleteBlogPostResponse:
+    success: bool = True
+
+@strawberry.type
+class DeleteNotPermittedError:
+    message: str 
+
+# Create a Union type to represent the 2 results from the mutation
+UpdateResponse = Annotated[
+    Union[UpdateBlogPostSuccess, UpdateNotPermittedError],
+    strawberry.union("UpdateBlogPostResponse"),
+]
+
+DeleteResponse = Annotated[
+    Union[DeleteBlogPostResponse, DeleteNotPermittedError],
+    strawberry.union("DeleteBlogResponse"),
+]
