@@ -5,7 +5,7 @@ from blog.types import BlogPostType
 
 
 @strawberry.django.type(models.User)
-class UserType1:
+class AppUserType:
     username: str
     email: str
     phone_number: str
@@ -14,7 +14,7 @@ class UserType1:
 
 @strawberry.type
 class LoginSuccess:
-    user: UserType1
+    user: AppUserType
 
 @strawberry.type
 class LoginError:
