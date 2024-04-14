@@ -1,6 +1,6 @@
 # grbloggr
 
-![](v_images/django_graphQL.png)
+![](uploads/django_graphQL.png)
 
 
 grbloggr is a GraphQL API that serves as the backend server for a simple blog reader app. It allows users to 
