@@ -7,11 +7,11 @@ from users import models
 class BlogPostType:
     id: int
     title: str
-    author: "LimitedUserType1" 
+    author: "LimitedAppUserType" 
     message: str
 
 @strawberry.django.type(models.User)
-class LimitedUserType1:
+class LimitedAppUserType:
     username: str
     email: str
 
