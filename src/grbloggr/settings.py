@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
 from gqlauth.settings_type import GqlAuthSettings
 
@@ -115,7 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -140,7 +141,10 @@ AUTHENTICATION_BACKENDS = [
 
 GQL_AUTH = GqlAuthSettings(
     LOGIN_REQUIRE_CAPTCHA=False,
-    REGISTER_REQUIRE_CAPTCHA=False
+    REGISTER_REQUIRE_CAPTCHA=False,
+    JWT_EXPIRATION_DELTA = timedelta(days=1),
+    JWT_LONG_RUNNING_REFRESH_TOKEN = True, # Whether to enable refresh tokens to be used as an alternative to login every time the token is expired.
+    JWT_REFRESH_EXPIRATION_DELTA = timedelta(days=7) # Refresh token expiration time delta.
 )
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
