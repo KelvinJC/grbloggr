@@ -16,17 +16,15 @@ Within the project, the two modules to note are:
 1. users - Creation, authentication, update and deletion of user accounts 
 2. blog - Creation, listing, update and deletion of blogs by authorised users  
 
+
+### Queries & Mutations
+-- users
+
 #### Queries
-- users
 * me
 * public
 
-- blog
-* getBlogosts
-* getBlogPostsByLimit
-
 #### Mutations
-- users
 * register
 * login
 * verifyAccount
@@ -37,7 +35,14 @@ Within the project, the two modules to note are:
 * updateAccount
 * deleteAccount
 
-- blog
+
+-- blog
+
+#### Queries
+* getBlogosts
+* getBlogPostsByLimit
+
+#### Mutations
 * createBlogPost
 * updateBlogPost
 * deleteBlogPost
