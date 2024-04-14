@@ -1,9 +1,12 @@
-from typing import List, Union, Annotated
+from typing import List
 
 from django.contrib.auth import get_user_model
 import strawberry
 
-from .types import BlogPostType, UpdateBlogPostSuccess, UpdateNotPermittedError
+from .types import (
+    BlogPostType, DeleteBlogPostResponse, UpdateResponse, DeleteResponse,
+    DeleteNotPermittedError, UpdateBlogPostSuccess, UpdateNotPermittedError,
+)
 from .models import BlogPost
 from users.permissions import IsAuthenticated
 
@@ -24,12 +27,6 @@ class Query:
         blogs = BlogPost.objects.all()[0:limit]
         return blogs
     
-
-# Create a Union type to represent the 2 results from the mutation
-UpdateResponse = Annotated[
-    Union[UpdateBlogPostSuccess, UpdateNotPermittedError],
-    strawberry.union("UpdateBlogPostResponse"),
-]
 
 @strawberry.type
 class Mutation:
@@ -55,11 +52,11 @@ class Mutation:
         return UpdateNotPermittedError(message="ERROR: Update failed. Blog post update restricted to author.")
 
     @strawberry.field(permission_classes=[IsAuthenticated])
-    def delete_blogpost(self, info: strawberry.Info, id:int) -> bool:
+    def delete_blogpost(self, info: strawberry.Info, id:int) -> DeleteResponse:
         blog = BlogPost.objects.get(id=id)
         if blog.author == info.context.request.user:
             blog.delete()
-            return True
-        return False
+            return DeleteBlogPostResponse
+        return DeleteNotPermittedError(message="ERROR: Delete failed. Delete operation restricted to author.")
  
 
