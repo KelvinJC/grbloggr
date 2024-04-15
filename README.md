@@ -1,7 +1,7 @@
 # grbloggr
 
 <p float="left">
-  <img src="uploads/django_graphQL.png" width="600" />
+  <img src="uploads/django_graphQL.png" width="400" />
   <img src="uploads/strawberry-gql-logo.png" width="400" />
 </p>
 
