@@ -1,8 +1,12 @@
 # grbloggr
 
-![](uploads/django_graphQL.png)
+<p float="left">
+  <img src="uploads/django_graphQL.png" width="600" />
+  <img src="uploads/strawberry-gql-logo.png" width="400" />
+</p>
 
 
+##
 grbloggr is a GraphQL API that serves as the backend server for a simple blog reader app. It allows users to 
 * Register and login to the API
 * Create blog posts
@@ -13,12 +17,14 @@ grbloggr is a GraphQL API that serves as the backend server for a simple blog re
 
 ### Project specifications
 Within the project, the two modules to note are:
-1. users - Creation, authentication, update and deletion of user accounts 
-2. blog - Creation, listing, update and deletion of blogs by authorised users  
+1. #### ``` users```
+    User management - creation, authentication, update and deletion of user accounts 
+2. #### ``` blog``` 
+    Content management - creation, listing, update and deletion of blogs by authorised users  
 
 
 ### Queries & Mutations
--- users
+#### ``` users```
 
 #### Queries
 * me
@@ -36,7 +42,7 @@ Within the project, the two modules to note are:
 * deleteAccount
 
 
--- blog
+#### ``` blog```
 
 #### Queries
 * getBlogosts
