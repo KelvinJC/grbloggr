@@ -77,7 +77,7 @@ To prevent clashes on port 8000, make sure no other Django app is running on loc
 
 
 ### Documentation
-```grblogger``` relies on the auto-generated GraphQL documentation which can be accessed at
+```grbloggr``` relies on the auto-generated GraphQL documentation which can be accessed at
 
 ```http://127.0.0.1:8000/graphql``` 
 
