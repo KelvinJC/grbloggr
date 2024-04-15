@@ -1,4 +1,4 @@
-# grbloggr
+# ```grbloggr```
 
 <p float="left">
   <img src="uploads/django_graphQL.png" width="400" />
