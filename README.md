@@ -81,7 +81,7 @@ copy and paste ```http://127.0.0.1:8000/api``` into your preferred browser.<br>
 
 To prevent clashes on port 8000, make sure no other Django app is running on localhost.
 
-
+![](uploads/register-user.png)
 ### Documentation
 ```grbloggr``` relies on the auto-generated GraphQL documentation which can be accessed at
 
