@@ -132,7 +132,7 @@ Submit your username and password at the login mutation. Ensure to select fields
 <br/>
 
 #### * JSON Web Token: 
-For any further request to be made, embed the JWT token in the "token" field of the response into the header 
+For any further request to be made, click on the "Headers" button. Create a JSON object with authorization as key and the JWT token as its value. <br/>
 e.g. {"authorization": "JWT your-JWT-token-goes-here"}
 
 ![](uploads/jwt-header.png)
