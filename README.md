@@ -107,7 +107,24 @@ copy and paste ```http://127.0.0.1:8000/api``` into your preferred browser.<br>
 
 To prevent clashes on port 8000, make sure no other Django app is running on localhost.
 
+* User sign up: To sign up, click on the registerUser mutation, fill in the required details, send the request.  (i.e. click the play button)
 ![](uploads/register-user.png)
+
+In response, you should recieve a token displayed on your the terminal as part of an email message
+![](uploads/verify-account-token-example.png)
+
+* Verify user account: Verify your user account by clicking on the verifyUser mutation and submitting the token 
+![](uploads/verify-account-screenshot.png)
+
+* Login: Submit your username and password at the login mutation. Ensure to select fields as indicated in the screenshot.
+![](uploads/login-screenshot.png)
+
+* JSON Web Token: For any further request to be made, embed the JWT token in the "token" field of the response into the header 
+e.g. {"authorization": "JWT your-JWT-token-goes-here"}
+![](uploads/jwt-header.png)
+
+* Refresh JWT: To refresh the token after its expiry, you can either repeat the login process or submit the refresh token recieved while the JWT token is in the header
+
 
 ### Authentication and Authorisation.
 
