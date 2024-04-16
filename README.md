@@ -69,7 +69,18 @@ The API is implemented using the Strawberry framework, providing a GraphQL endpo
 * deleteBlogPost
 
 
-## 4. Installation
+### 4. Documentation
+```grbloggr``` relies on the auto-generated GraphQL documentation which can be accessed at
+
+```http://127.0.0.1:8000/graphql``` 
+
+You can view the full documentation of the API and perform queries and mutations just as you would on Postman or any other API client.
+
+
+![](uploads/playground-example.png)
+
+
+## 5. Installation
 
 * Get a copy of the source code of this project into your local repository.
 
@@ -89,7 +100,7 @@ cd grbloggr
 docker compose up --build 
 ```
 
-### 5. Usage
+### 6. Usage
 #### Running the server:
 By default, Django apps listen on port 8000 so once the server is running, 
 copy and paste ```http://127.0.0.1:8000/api``` into your preferred browser.<br>
@@ -97,16 +108,6 @@ copy and paste ```http://127.0.0.1:8000/api``` into your preferred browser.<br>
 To prevent clashes on port 8000, make sure no other Django app is running on localhost.
 
 ![](uploads/register-user.png)
-### 6. Documentation
-```grbloggr``` relies on the auto-generated GraphQL documentation which can be accessed at
-
-```http://127.0.0.1:8000/graphql``` 
-
-You can view the full documentation of the API and perform queries and mutations just as you would on Postman or any other API client.
-
-
-![](uploads/playground-example.png)
-
 
 ### Authentication and Authorisation.
 
