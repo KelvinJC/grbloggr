@@ -107,42 +107,62 @@ copy and paste ```http://127.0.0.1:8000/api``` into your preferred browser.<br>
 
 To prevent clashes on port 8000, make sure no other Django app is running on localhost.
 
-* User sign up: To sign up, click on the registerUser mutation, fill in the required details, send the request.  (i.e. click the play button)
+#### * User sign up: 
+To sign up, click on the registerUser mutation, fill in the required details, send the request.  (i.e. click the play button)
+  
 ![](uploads/register-user.png)
+<br/>
 
-In response, you should recieve a token displayed on your the terminal as part of an email message
+
+#### * In response, you should recieve a token displayed on your the terminal as part of an email message
+
 ![](uploads/verify-account-token-example.png)
+<br/>
 
-* Verify user account: Verify your user account by clicking on the verifyUser mutation and submitting the token 
+#### * Verify user account: 
+Verify your user account by clicking on the verifyUser mutation and submitting the token
+
 ![](uploads/verify-account-screenshot.png)
+<br/>
 
-* Login: Submit your username and password at the login mutation. Ensure to select fields as indicated in the screenshot.
+#### * Login: 
+Submit your username and password at the login mutation. Ensure to select fields as indicated in the screenshot.
+  
 ![](uploads/login-screenshot.png)
+<br/>
 
-* JSON Web Token: For any further request to be made, embed the JWT token in the "token" field of the response into the header 
+#### * JSON Web Token: 
+For any further request to be made, embed the JWT token in the "token" field of the response into the header 
 e.g. {"authorization": "JWT your-JWT-token-goes-here"}
+
 ![](uploads/jwt-header.png)
+<br/>
 
-* Refresh JWT: To refresh the token after its expiry, you can either repeat the login process or submit the refresh token recieved while the JWT token is in the header
+#### * Refresh JWT: 
+To refresh the token after its expiry, you can either repeat the login process or submit the refresh token recieved while the JWT token is in the header
 
-
-### Authentication and Authorisation.
-
-JWT authentication ensures that users are properly authenticated. 
-This serves to ensure that only authors can update or delete their posts
-
-### Database choice
-This project makes use of a Postgres database which is within a separate docker container 
-for persistent storage of blog posts as well as user information. 
-
-If you require a different database, customisation is possible via the settings.py file. <br><br>
-
-
-### Django Admin User
+#### Django Admin User
 This step is not critical to the usage of the app but if you are familiar with the Django Admin UI you can make use of it. 
 
 To access the Django Admin UI visit ```http://127.0.0.1:8000/admin```
 
+
+<br/>
+<br/>
+<br/>
+
+
+### Design choices
+#### Authentication and Authorisation.
+
+JSON Web Token authentication ensures that users are properly authenticated. 
+This serves to ensure that only authors can update or delete their posts
+
+#### Database choice
+This project makes use of a Postgres database which is within a separate docker container 
+for persistent storage of blog posts as well as user information. 
+
+If you require a different database, customisation is possible via the settings.py file. <br><br>
 
 
 ### System design
@@ -152,6 +172,10 @@ The persistence layer is a Postgres database. This handles data query requests f
 The gateway interface and application server reside within the same Docker container while the database and web server rest in separate Docker containers. Since all services share a single Docker Compose configuration file, they share the same network within a host OS.
 
 ![](uploads/api-architecture.png)
+<br/>
+<br/>
+<br/>
+<br/>
 
 
 
