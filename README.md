@@ -7,7 +7,7 @@
 
 
 ##
-Built with Django and Strawberry GraphQL, ```grbloggr``` is a GraphQL API that serves as the backend server for a simple blog reader app. It allows users to 
+Built with Django and Strawberry GraphQL, ```grbloggr``` is a GraphQL API that serves as the backend server for a simple blog platform. It allows users to 
 * Register and login to the API
 * Create blog posts
 * Get a list of blog posts from the database
@@ -15,22 +15,37 @@ Built with Django and Strawberry GraphQL, ```grbloggr``` is a GraphQL API that s
 * Update existing blog posts
 * Delete existing blog posts
 
-### Project specifications
-Within the project, the two modules to note are:
-1. #### ``` users```
-    User management - creation, authentication, update and deletion of user accounts 
-2. #### ``` blog``` 
-    Content management - creation, listing, update and deletion of blogs by authorised users  
+### 1. Project structure
+The project structure follows a typical Django setup:
+
+#### ``` users/ ```
+User management - creation, authentication, update and deletion of user accounts 
+
+#### ``` blog/ ``` 
+Content management - creation, listing, update and deletion of blogs by authorised users  
+
+#### ```grbloggr/```
+Main project directory
+
+#### ```manage.py``` 
+Django's command-line utility for administrative tasks.
 
 
-### Queries & Mutations
+### 2. Features
+```Authentication:``` Users can register to create new accounts, login, update their accounts and logout.<br/>
+```Content Creation:``` Users can create new blog posts with titles, content, and author information. Users can update and delete their blog posts as well!
+
+
+### 3. GraphQL API Queries & Mutations: 
+The API is implemented using the Strawberry framework, providing a GraphQL endpoint for interacting with user and blog data.
+
 #### ``` users```
 
-#### Queries
+#### queries
 * me
 * public
 
-#### Mutations
+#### mutations
 * register
 * login
 * verifyAccount
@@ -44,17 +59,17 @@ Within the project, the two modules to note are:
 
 #### ``` blog```
 
-#### Queries
+#### queries
 * getBlogosts
 * getBlogPostsByLimit
 
-#### Mutations
+#### mutations
 * createBlogPost
 * updateBlogPost
 * deleteBlogPost
 
 
-## Getting Started
+## 4. Installation
 
 * Get a copy of the source code of this project into your local repository.
 
@@ -74,15 +89,15 @@ cd grbloggr
 docker compose up --build 
 ```
 
-
-### Running the server:
+### 5. Usage
+#### Running the server:
 By default, Django apps listen on port 8000 so once the server is running, 
 copy and paste ```http://127.0.0.1:8000/api``` into your preferred browser.<br>
 
 To prevent clashes on port 8000, make sure no other Django app is running on localhost.
 
 ![](uploads/register-user.png)
-### Documentation
+### 6. Documentation
 ```grbloggr``` relies on the auto-generated GraphQL documentation which can be accessed at
 
 ```http://127.0.0.1:8000/graphql``` 
